@@ -1,0 +1,28 @@
+{
+  "slideshowName": "Slideshow.pptx",
+  "slideshowSender": "sender@domain.com",
+
+  "tenantId": "AAAAAAAA-BBBB-CCCC-DDDD-EEEEEEEEEEEE",
+  "clientId": "AAAAAAAA-BBBB-CCCC-DDDD-EEEEEEEEEEEE",
+  "clientSecret": "SECRET
+
+  "powerpointPath": "C:\\Program Files\\Microsoft Office\\root\\office16\\POWERPNT.EXE",
+
+  "email": "account@domain.com",
+  "password": "PASSWORD",
+
+  "showPuppeteerWindow": false,
+
+  "remarks": {
+    "slideshowName": "The OneDrive filename of the file that will be downloaded.",
+    "slideshowSender": "The email address of the account that own's the specified OneDrive file.",
+    "tenantId": "Microsoft Entra application tenant ID.",
+    "clientId": "Microsoft Entra application Client ID.",
+    "clientSecret": "Microsoft Entra application Client Secret.",
+    "powerpointPath": "The path to your PowerPoint executable. Make sure you escape backslashes with another backslash.
+    "email": "The account that will be used to download the OneDrive item. The item must be directly shared with this account.",
+    "password": "The password to the account specified above.",
+    "showPuppeteerWindow": "Debug option. Enabling this will show the emulated browser window that is used to get the Microsoft Graph authentication token."
+
+  }
+}

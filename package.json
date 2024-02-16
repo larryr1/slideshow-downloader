@@ -1,0 +1,23 @@
+{
+  "name": "slideshow-downloader",
+  "version": "1.2.5",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src\\GetSlideshow.mjs"
+  },
+  "bin": {
+    "run-slidshow": "src/GetSlideshow.mjs"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.3.2",
+    "file-type": "^18.5.0",
+    "node-html-parser": "^6.1.5",
+    "puppeteer": "^19.6.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.49.0"
+  }
+}
