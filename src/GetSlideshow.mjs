@@ -3,12 +3,10 @@ import config from "./Config.js";
 import { GetAuthorizationCode, GetGraphToken } from "./Authorization.mjs";
 import { GetDownloadUrl, DownloadFileFromUrl, GetLatestSharedSlideshow } from "./OneDrive.mjs";
 import { RunPowerpoint, RunTransformer } from "./Transformer.js";
-import { existsSync, unlinkSync, writeFileSync } from "fs";
+import { existsSync, unlinkSync } from "fs";
 import { fileTypeFromFile } from "file-type";
 import { kill } from "process";
 import { exec } from "child_process";
-
-const args = process.argv.slice(2);
 
 var graphToken = "";
 var slideshowPid = 0;
@@ -93,13 +91,7 @@ function graphTokenError(e) {
     
   }, 2000);
 
-  var msTime = 600000;
-  args.forEach(arg => {
-    if (arg.startsWith("update_time=")) {
-      msTime = parseInt(arg.substring(12));
-      console.log("Set msTime to " + msTime)
-    }
-  });
+  var msTime = 300000;
 
   console.log(`Set update check interval to ${msTime/60000} minute(s)`)
 
