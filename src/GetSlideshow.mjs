@@ -105,7 +105,6 @@ function graphTokenError(e) {
 
   // Periodically check for updates every 10 minutes
   setInterval(updateCheck, 600000);
-  updateCheck;
 
 })();
 
