@@ -91,12 +91,12 @@ function graphTokenError(e) {
     
   }, 2000);
 
-  var msTime = 300000;
+  var msTime = 10000;
 
   console.log(`Set update check interval to ${msTime/60000} minute(s)`)
 
-  // Periodically check for updates every 10 minutes
-  setInterval(updateCheck, 600000);
+  // Periodically check for updates every 10 seconds
+  setInterval(updateCheck, 10000);
 
 })();
 
