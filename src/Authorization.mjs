@@ -28,14 +28,20 @@ export async function GetAuthorizationCode() {
         await browser.close();
 
         resolve(accessCode);
-
-      } else {
-
-        // Ignore request if it is not our callback url.
-        request.continue();
-
+        return;
       }
+
+      // Ignore request if it is not our callback url.
+      request.continue();
     });
+
+    page.on("framenavigated", async frame => {
+      if (frame.url.toString().includes("/appverify")) {
+        const yes = await page.waitForSelector("button#idSIButton9");
+        await yes.click();
+        await yes.dispose();
+      }
+    })
 
     try {
 
@@ -55,7 +61,13 @@ export async function GetAuthorizationCode() {
       // Accept application authorization prompt
       const declineStayButton = await page.waitForSelector("input[type='submit']");
       await declineStayButton.click();
-      await declineStayButton.dispose(); 
+      await declineStayButton.dispose();
+
+
+      // Accept application authorization prompt
+      const decline2 = await page.waitForSelector("input[type='submit']");
+      await decline2.click();
+      await decline2.dispose(); 
 
     } catch (error) {
       reject(error);
