@@ -11,6 +11,9 @@
   "email": "account@domain.com",
   "password": "PASSWORD",
 
+  "updateCheckInterval": 600000,
+  "updateTriggerCommand": ".\\start.bat",
+
   "showPuppeteerWindow": false,
 
   "remarks": {
@@ -22,6 +25,8 @@
     "powerpointPath": "The path to your PowerPoint executable. Make sure you escape backslashes with another backslash.",
     "email": "The account that will be used to download the OneDrive item. The item must be directly shared with this account.",
     "password": "The password to the account specified above.",
+    "updateCheckInterval": "The time in ms to wait between checking for updates to the file. If an update was detected, the process will exit after running the command specified by updateTriggerCommand.",
+    "updateTriggerCommand": "The command to run after an update was detected but JUST before the process exits. I recommend this to be your batch file that starts the slideshow.",
     "showPuppeteerWindow": "Debug option. Enabling this will show the emulated browser window that is used to get the Microsoft Graph authentication token."
 
   }

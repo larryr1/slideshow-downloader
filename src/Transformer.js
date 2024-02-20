@@ -1,19 +1,18 @@
-const { exec } = require("child_process");
+const { exec, spawnSync } = require("child_process");
 const config = require("./Config.js");
-const path = require("path"); 
+const path = require("path");
 
 module.exports = {};
 
 const RunPowerpoint = async (file) => {
 
   return new Promise((resolve, reject) => {
-    const p = exec(`"${config.powerpointPath}" /S "${file}"`, (error, stdout, stderr) => {
-      if (error) {
-        reject(error);
-      }
-      
-      resolve(p.pid);
-    });
+    const p = spawnSync(`"${config.powerpointPath}" /S "${file}"`);
+    if (p.error) {
+      reject(p.error);
+    }
+
+    resolve(p.pid);
   });
 
 };

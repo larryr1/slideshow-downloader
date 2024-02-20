@@ -7,6 +7,7 @@ import { existsSync, unlinkSync } from "fs";
 import { fileTypeFromFile } from "file-type";
 import { kill } from "process";
 import { exec } from "child_process";
+import { resolve } from "path";
 
 var graphToken = "";
 var slideshowPid = 0;
@@ -111,7 +112,7 @@ async function updateCheck() {
   // It was modified, restart the slideshow.
   kill(slideshowPid);
 
-  exec("./start.bat");
+  exec(resolve(config.updateTriggerCommand));
 
   process.exit(0);
 
