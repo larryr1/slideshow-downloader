@@ -105,6 +105,9 @@ async function updateCheck() {
   const latestSharedFile = await GetLatestSharedSlideshow(graphToken);
   console.log("Got latest information.");
 
+  console.log("Last modified time: " + new Date(latestSharedFile.lastModifiedTime));
+  console.log("Start time: " + startTime);
+
   // return it hasnt been modified
   if (new Date(latestSharedFile.lastModifiedTime) < startTime) {
     console.log("The slideshow has not been updated.");
@@ -112,11 +115,15 @@ async function updateCheck() {
   };
 
   // It was modified, restart the slideshow.
-  kill(slideshowPid);
-
+  console.log("Triggering update command.");
   exec(config.updateTriggerCommand);
 
+  console.log("Killing PowerPoint.");
+  kill(slideshowPid);
+
+  console.log("Exiting in 5 seconds.");
   setTimeout(() => {
+    console.log("Exiting...");
     process.exit(0);
   }, 5000);
   
