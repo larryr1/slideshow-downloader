@@ -112,7 +112,10 @@ async function updateCheck() {
 
   exec(resolve(config.updateTriggerCommand));
 
-  process.exit(0);
+  setTimeout(() => {
+    process.exit(0);
+  }, 5000);
+  
 
   // Restart
   
