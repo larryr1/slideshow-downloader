@@ -114,8 +114,14 @@ async function updateCheck() {
     return;
   };
 
+  console.log("Update detected. Exiting in 3 seconds.");
+
   // It was modified, restart the slideshow.
   exec(config.updateTriggerCommand);
-  process.exit(0);
+  
+  setTimeout(() => {
+    console.log("Exiting...");
+    process.exit(0);
+  }, 3000);
   
 }
