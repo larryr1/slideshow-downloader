@@ -106,6 +106,8 @@ function graphTokenError(e) {
 async function updateCheck() {
   // Locate the slideshow resource
   console.log("Checking for updates. Getting latest shared slideshow.");
+  console.log("Drive ID: " + driveItemDriveId);
+  console.log("Item ID: " + driveItemId);
   const lastModifiedDateTime = await GetDriveItemLastModifiedDateTime(graphToken, driveItemDriveId, driveItemId);
   console.log("Got latest information.");
 
