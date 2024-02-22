@@ -9,8 +9,6 @@ import { kill } from "process";
 import { exec } from "child_process";
 import { resolve } from "path";
 
-console.log("sideshow-downloader v" + require("../package.json").version)
-
 var graphToken = "";
 var slideshowPid = 0;
 const startTime = new Date();
