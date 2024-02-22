@@ -105,7 +105,7 @@ async function updateCheck() {
   const latestSharedFile = await GetLatestSharedSlideshow(graphToken);
   console.log("Got latest information.");
 
-  console.log("Last modified time: " + latestSharedFile.lastModifiedDateTime);
+  console.log("Last modified time: " + new Date(latestSharedFile.lastModifiedDateTime));
   console.log("Start time: " + startTime);
 
   // return it hasnt been modified
