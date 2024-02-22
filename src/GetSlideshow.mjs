@@ -105,32 +105,17 @@ function graphTokenError(e) {
 
 async function updateCheck() {
   // Locate the slideshow resource
-  console.log("Checking for updates. Getting latest shared slideshow.");
-  console.log("Drive ID: " + driveItemDriveId);
-  console.log("Item ID: " + driveItemId);
+  console.log("Checking for updates.");
   const lastModifiedDateTime = await GetDriveItemLastModifiedDateTime(graphToken);
-  console.log("Got latest information.");
-
-  console.log("Last modified: " + new Date(lastModifiedDateTime));
-  console.log("Program started at: " + startTime);
 
   // return it hasnt been modified
   if (new Date(lastModifiedDateTime) < startTime) {
-    console.log("The slideshow has not been modified since the program started.");
+    console.log("No update available.");
     return;
   };
 
   // It was modified, restart the slideshow.
-  console.log("Triggering update command.");
   exec(config.updateTriggerCommand);
-
-  console.log("Exiting in 5 seconds.");
-  setTimeout(() => {
-    console.log("Exiting...");
-    process.exit(0);
-  }, 1000);
-  
-
-  // Restart
+  process.exit(0);
   
 }
