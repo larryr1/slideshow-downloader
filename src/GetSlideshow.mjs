@@ -108,7 +108,7 @@ async function updateCheck() {
   console.log("Checking for updates. Getting latest shared slideshow.");
   console.log("Drive ID: " + driveItemDriveId);
   console.log("Item ID: " + driveItemId);
-  const lastModifiedDateTime = await GetDriveItemLastModifiedDateTime(graphToken, driveItemDriveId, driveItemId);
+  const lastModifiedDateTime = await GetDriveItemLastModifiedDateTime(graphToken);
   console.log("Got latest information.");
 
   console.log("Last modified: " + new Date(lastModifiedDateTime));
