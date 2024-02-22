@@ -28,11 +28,11 @@ export async function GetDriveItemLastModifiedDateTime(graphToken, driveId, file
   const requestUrl = `https://graph.microsoft.com/v1.0/drives/${item.remoteItem.parentReference.driveId}/items/${item.id}?select=lastModifiedDateTime`;
   console.log("Request URL is " + requestUrl);
   const itemData = await axios.get(requestUrl, { headers: { Authorization: `Bearer ${graphToken}`}});
-  if (response.data["error"]) {
-    throw new Error(response.data.error);
+  if (itemData.data["error"]) {
+    throw new Error(itemData.data.error);
   }
 
-  return response.data[lastModifiedDateTime];
+  return itemData.data[lastModifiedDateTime];
 }
 
 // Used to get the unique one-time download URL for a drive item.
