@@ -96,9 +96,9 @@ function graphTokenError(e) {
     
   }, 2000);
 
-  console.log(`Checking for updates every ${config.updateCheckInterval/60000} minute(s)`)
+  console.log(`Checking for updates every ${config.updateCheckInterval/60000} minute(s).`)
 
-  // Periodically check for updates every 10 seconds
+  // Periodically check for updates
   setInterval(updateCheck, config.updateCheckInterval);
 
 })();
