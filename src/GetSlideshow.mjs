@@ -103,14 +103,17 @@ async function updateCheck() {
   // Locate the slideshow resource
   console.log("Checking for updates. Getting latest shared slideshow.");
   const latestSharedFile = await GetLatestSharedSlideshow(graphToken);
+  console.log("Got latest information.");
 
   // return it hasnt been modified
-  if (latestSharedFile.lastModifiedTime < startTime) return;
+  if (latestSharedFile.lastModifiedTime < startTime) {
+    console.log("The slideshow has not been updated.");
+  };
 
   // It was modified, restart the slideshow.
   kill(slideshowPid);
 
-  exec(resolve(config.updateTriggerCommand));
+  exec(config.updateTriggerCommand);
 
   setTimeout(() => {
     process.exit(0);
