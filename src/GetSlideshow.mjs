@@ -11,7 +11,7 @@ import { resolve } from "path";
 
 var graphToken = "";
 var slideshowPid = 0;
-const startTime = new Date().toISOString();
+const startTime = new Date();
 
 
 function authorizationCodeError(e) {
@@ -106,8 +106,9 @@ async function updateCheck() {
   console.log("Got latest information.");
 
   // return it hasnt been modified
-  if (latestSharedFile.lastModifiedTime < startTime) {
+  if (new Date(latestSharedFile.lastModifiedTime) < startTime) {
     console.log("The slideshow has not been updated.");
+    return;
   };
 
   // It was modified, restart the slideshow.
