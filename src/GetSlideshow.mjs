@@ -9,6 +9,8 @@ import { kill } from "process";
 import { exec } from "child_process";
 import { resolve } from "path";
 
+console.log("sideshow-downloader v" + require("../package.json").version)
+
 var graphToken = "";
 var slideshowPid = 0;
 const startTime = new Date();
@@ -105,7 +107,7 @@ async function updateCheck() {
   const latestSharedFile = await GetLatestSharedSlideshow(graphToken);
   console.log("Got latest information.");
 
-  console.log("Last modified time: " + latestSharedFile.lastModifiedTime);
+  console.log("Last modified time: " + latestSharedFile.lastModifiedDateTime);
   console.log("Start time: " + startTime);
 
   // return it hasnt been modified
@@ -118,14 +120,11 @@ async function updateCheck() {
   console.log("Triggering update command.");
   exec(config.updateTriggerCommand);
 
-  console.log("Killing PowerPoint.");
-  kill(slideshowPid);
-
   console.log("Exiting in 5 seconds.");
   setTimeout(() => {
     console.log("Exiting...");
     process.exit(0);
-  }, 5000);
+  }, 1000);
   
 
   // Restart
