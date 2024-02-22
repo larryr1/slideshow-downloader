@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import config from "./Config.js";
 import { GetAuthorizationCode, GetGraphToken } from "./Authorization.mjs";
-import { GetDownloadUrl, DownloadFileFromUrl, GetLatestSharedSlideshow } from "./OneDrive.mjs";
+import { GetDownloadUrl, DownloadFileFromUrl, GetLatestSharedSlideshow, GetDriveItemLastModifiedDateTime } from "./OneDrive.mjs";
 import { RunPowerpoint, RunTransformer } from "./Transformer.js";
 import { existsSync, unlinkSync } from "fs";
 import { fileTypeFromFile } from "file-type";
@@ -10,7 +10,8 @@ import { exec } from "child_process";
 import { resolve } from "path";
 
 var graphToken = "";
-var slideshowPid = 0;
+var driveItemId = "";
+var driveItemDriveId = "";
 const startTime = new Date();
 
 
@@ -39,6 +40,9 @@ function graphTokenError(e) {
   // Locate the slideshow resource
   console.log("Getting latest shared slideshow.");
   const latestSharedFile = await GetLatestSharedSlideshow(graphToken);
+
+  driveItemId = latestSharedFile.remoteItem.id;
+  driveItemDriveId = latestSharedFile.remoteItem.parentReference.driveId;
 
   // Get the slideshow URL
   console.log("Getting download url for shared slideshow.");
@@ -102,14 +106,14 @@ function graphTokenError(e) {
 async function updateCheck() {
   // Locate the slideshow resource
   console.log("Checking for updates. Getting latest shared slideshow.");
-  const latestSharedFile = await GetLatestSharedSlideshow(graphToken);
+  const lastModifiedDateTime = await GetDriveItemLastModifiedDateTime(graphToken, driveItemId, driveItemDriveId);
   console.log("Got latest information.");
 
-  console.log("Last modified time: " + new Date(latestSharedFile.lastModifiedDateTime));
+  console.log("Last modified time: " + new Date(lastModifiedDateTime));
   console.log("Start time: " + startTime);
 
   // return it hasnt been modified
-  if (new Date(latestSharedFile.lastModifiedDateTime) < startTime) {
+  if (new Date(lastModifiedDateTime) < startTime) {
     console.log("The slideshow has not been updated.");
     return;
   };

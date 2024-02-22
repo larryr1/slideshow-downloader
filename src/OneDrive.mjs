@@ -20,6 +20,16 @@ export async function GetLatestSharedSlideshow(graphToken) {
   return sharedSlideshow;
 }
 
+// Used to get the lastModifiedDateTime of a DriveItem.
+export async function GetDriveItemLastModifiedDateTime(graphToken, driveId, fileId) {
+  const response = await axios.get(`https://graph.microsoft.com/v1.0/drives/${driveId}/items/${fileId}?select=lastModifiedDateTime`, { headers: { Authorization: `Bearer ${graphToken}`}});
+  if (response.data["error"]) {
+    throw new Error(response.data.error);
+  }
+
+  return response.data[lastModifiedDateTime];
+}
+
 // Used to get the unique one-time download URL for a drive item.
 export async function GetDownloadUrl(graphToken, driveId, fileId) {
   const response = await axios.get(`https://graph.microsoft.com/v1.0/drives/${driveId}/items/${fileId}?select=id,@microsoft.graph.downloadUrl`, { headers: { Authorization: `Bearer ${graphToken}`}});
