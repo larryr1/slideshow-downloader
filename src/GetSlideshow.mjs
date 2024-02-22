@@ -109,7 +109,7 @@ async function updateCheck() {
   console.log("Start time: " + startTime);
 
   // return it hasnt been modified
-  if (new Date(latestSharedFile.lastModifiedTime) < startTime) {
+  if (new Date(latestSharedFile.lastModifiedDateTime) < startTime) {
     console.log("The slideshow has not been updated.");
     return;
   };
